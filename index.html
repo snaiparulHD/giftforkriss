@@ -34,7 +34,7 @@
             will-change: transform, filter, opacity, border-radius;
         }
 
-        video {
+        #vid {
             position: fixed;
             inset: 0;
             width: 100%;
@@ -1209,6 +1209,540 @@
             animation: codePulse 2.2s ease-in-out infinite;
         }
 
+        /* =========================================================
+           ETAPA 3: FINAL EXPERIENCE – KRISS, THIS IS YOUR NIGHT
+           ========================================================= */
+        #finalConcertStage {
+            position: fixed;
+            inset: 0;
+            z-index: 95;
+            background: #05020a;
+            color: #ffffff;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .fe-screen {
+            min-height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+            position: relative;
+            animation: fadeInScene 0.55s ease forwards;
+        }
+
+        /* 1. SECRET CODE UNLOCK (0908-TINI) */
+        .fe-unlock-card {
+            width: 100%;
+            max-width: 480px;
+            background:
+                radial-gradient(circle at 50% 0%, rgba(255, 45, 165, 0.24), transparent 60%),
+                rgba(16, 7, 30, 0.92);
+            border: 1.5px solid rgba(255, 95, 205, 0.45);
+            border-radius: 28px;
+            padding: 34px 26px;
+            text-align: center;
+            box-shadow:
+                0 25px 80px rgba(0, 0, 0, 0.88),
+                0 0 48px rgba(175, 45, 255, 0.26);
+        }
+
+        .fe-unlock-title {
+            font-size: clamp(1.4rem, 4vw, 1.95rem);
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            margin-bottom: 10px;
+            color: #ffffff;
+            text-shadow: 0 0 24px rgba(255, 65, 175, 0.55);
+        }
+
+        .fe-unlock-sub {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 24px;
+            line-height: 1.45;
+        }
+
+        .fe-code-input {
+            width: 100%;
+            padding: 16px 18px;
+            border-radius: 16px;
+            border: 1.5px solid rgba(255, 120, 215, 0.45);
+            background: rgba(5, 2, 12, 0.85);
+            color: #ffffff;
+            font-family: 'Press Start 2P', monospace;
+            font-size: clamp(0.95rem, 3.2vw, 1.25rem);
+            text-align: center;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            outline: none;
+            margin-bottom: 16px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .fe-code-input:focus {
+            border-color: #ff55c8;
+            box-shadow: 0 0 24px rgba(255, 85, 200, 0.35);
+        }
+
+        .fe-error-msg {
+            min-height: 24px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #ff6b9d;
+            margin-bottom: 16px;
+        }
+
+        /* 2. TINI INTRODUCTION */
+        .fe-intro-card {
+            width: 100%;
+            max-width: 680px;
+            background:
+                radial-gradient(circle at 50% 10%, rgba(190, 45, 255, 0.25), transparent 60%),
+                rgba(16, 7, 30, 0.92);
+            border: 1.5px solid rgba(255, 95, 205, 0.45);
+            border-radius: 28px;
+            padding: 32px 24px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.88), 0 0 45px rgba(255, 50, 170, 0.22);
+        }
+
+        .fe-dialogue-box {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 120, 215, 0.35);
+            border-radius: 20px;
+            padding: 20px 22px;
+            font-size: clamp(1.08rem, 2.8vw, 1.35rem);
+            line-height: 1.55;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        /* 3. CONCERT OPENING */
+        .fe-opening-screen {
+            background: #000000;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .opening-stage-glow {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.4s ease, filter 0.3s ease;
+            background:
+                radial-gradient(circle at 50% 35%, rgba(255, 45, 175, 0.55), transparent 55%),
+                radial-gradient(circle at 25% 75%, rgba(150, 40, 255, 0.5), transparent 55%),
+                radial-gradient(circle at 75% 75%, rgba(255, 90, 210, 0.45), transparent 55%);
+        }
+
+        .opening-countdown {
+            font-family: 'Press Start 2P', monospace;
+            font-size: clamp(3rem, 12vw, 6.2rem);
+            color: #ffffff;
+            text-shadow: 0 0 30px #ff38b8, 0 0 65px #9b2dff;
+            margin-bottom: 18px;
+            z-index: 2;
+        }
+
+        .opening-status {
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            color: #ff9ce3;
+            margin-bottom: 24px;
+            z-index: 2;
+        }
+
+        .opening-reveal-title {
+            font-size: clamp(2rem, 7vw, 4.4rem);
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #ffffff;
+            text-shadow: 0 0 28px rgba(255, 65, 185, 0.9), 0 0 65px rgba(155, 45, 255, 0.8);
+            z-index: 2;
+            animation: revealPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes revealPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
+        /* 4 & 5. CONCERT ACT I + PLAYER */
+        .fe-concert-active {
+            justify-content: flex-start;
+            padding: 16px;
+            gap: 16px;
+            min-height: 100vh;
+        }
+
+        .concert-shell {
+            width: 100%;
+            max-width: 1120px;
+            border-radius: 28px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            border: 1.5px solid rgba(255, 110, 210, 0.35);
+            box-shadow: 0 28px 90px rgba(0, 0, 0, 0.9);
+            transition: background 0.8s ease, box-shadow 0.8s ease, border-color 0.8s ease;
+        }
+
+        .concert-shell.act-1 {
+            background:
+                radial-gradient(circle at 20% 20%, rgba(255, 95, 195, 0.34), transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(165, 65, 255, 0.34), transparent 52%),
+                linear-gradient(160deg, #240938 0%, #140522 100%);
+        }
+
+        .act-header {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .act-kicker {
+            font-family: 'Press Start 2P', monospace;
+            font-size: clamp(0.65rem, 1.8vw, 0.82rem);
+            color: #ff9ce3;
+            letter-spacing: 0.1em;
+        }
+
+        .act-title {
+            font-size: clamp(1.45rem, 4.2vw, 2.35rem);
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-shadow: 0 0 22px rgba(255, 65, 185, 0.65);
+        }
+
+        /* VIDEO & VISUAL SCREEN */
+        .screen-frame {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: clamp(250px, 48vh, 460px);
+            border-radius: 22px;
+            overflow: hidden;
+            background: #070310;
+            border: 2px solid rgba(255, 120, 215, 0.4);
+            box-shadow: 0 0 40px rgba(170, 45, 255, 0.28);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .screen-frame.fullscreen-mode {
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 120;
+            border-radius: 0;
+            border: none;
+        }
+
+        #actVideo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        #actPhotoFallback {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.35s ease, filter 0.35s ease;
+        }
+
+        .beat-pulse {
+            transform: scale(1.035) !important;
+            filter: brightness(1.16) saturate(1.25) !important;
+        }
+
+        .media-loader {
+            position: absolute;
+            inset: 0;
+            background: rgba(8, 3, 16, 0.72);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            z-index: 4;
+            font-size: 0.85rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #ffb3ea;
+        }
+
+        .loader-spinner {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 130, 220, 0.25);
+            border-top-color: #ff47be;
+            animation: spinRing 0.8s linear infinite;
+        }
+
+        @keyframes spinRing {
+            to { transform: rotate(360deg); }
+        }
+
+        .stage-art-overlay {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: linear-gradient(180deg, rgba(10, 3, 20, 0.15) 0%, rgba(10, 3, 20, 0.68) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 18px 22px;
+            z-index: 3;
+        }
+
+        .now-playing-label {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.65rem;
+            color: #ff9ce3;
+            margin-bottom: 6px;
+        }
+
+        .now-playing-song {
+            font-size: clamp(1.1rem, 2.6vw, 1.5rem);
+            font-weight: 800;
+            letter-spacing: 0.06em;
+        }
+
+        /* PLAYER CONTROLS */
+        .player-bar {
+            position: relative;
+            z-index: 2;
+            margin-top: 14px;
+            background: rgba(14, 6, 26, 0.88);
+            border: 1px solid rgba(255, 120, 215, 0.3);
+            border-radius: 20px;
+            padding: 14px 18px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+        }
+
+        .player-btns {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .player-btn {
+            appearance: none;
+            cursor: pointer;
+            font-family: 'Jost', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 130, 220, 0.38);
+            border-radius: 999px;
+            padding: 10px 16px;
+            transition: transform 0.15s ease, background 0.2s ease;
+        }
+
+        .player-btn:hover {
+            transform: scale(1.03);
+            background: rgba(255, 65, 185, 0.25);
+        }
+
+        .player-btn.accent {
+            background: linear-gradient(135deg, #ff2ea6, #8f2bff);
+            border-color: #ffb3ea;
+        }
+
+        .volume-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: #ffd1f2;
+        }
+
+        .volume-box input[type="range"] {
+            accent-color: #ff47be;
+            cursor: pointer;
+            width: 110px;
+        }
+
+        /* 6. FINAL MOMENT & VIP TICKET */
+        .fe-final-screen {
+            background: #000000;
+            text-align: center;
+            gap: 24px;
+            padding: 32px 20px;
+        }
+
+        .one-last-thing {
+            font-size: clamp(1.8rem, 6vw, 3.2rem);
+            font-weight: 800;
+            letter-spacing: 0.2em;
+            color: #ffffff;
+            text-shadow: 0 0 28px rgba(255, 70, 190, 0.75);
+            opacity: 0;
+            transition: opacity 1.4s ease;
+        }
+
+        .one-last-thing.shown {
+            opacity: 1;
+        }
+
+        .final-video-wrap {
+            width: 100%;
+            max-width: 760px;
+            border-radius: 22px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 120, 215, 0.45);
+            box-shadow: 0 0 42px rgba(170, 45, 255, 0.32);
+            background: #070310;
+        }
+
+        .final-video-wrap video {
+            width: 100%;
+            max-height: 44vh;
+            object-fit: cover;
+            display: block;
+        }
+
+        .vip-ticket {
+            width: 100%;
+            max-width: 560px;
+            border-radius: 24px;
+            padding: 28px 24px;
+            background:
+                radial-gradient(circle at 15% 15%, rgba(255, 65, 185, 0.38), transparent 55%),
+                radial-gradient(circle at 85% 85%, rgba(145, 45, 255, 0.42), transparent 55%),
+                linear-gradient(135deg, #1f0836 0%, #110420 100%);
+            border: 2px solid rgba(255, 130, 225, 0.65);
+            box-shadow:
+                0 0 50px rgba(255, 55, 180, 0.35),
+                0 25px 75px rgba(0, 0, 0, 0.9);
+            text-align: left;
+            position: relative;
+        }
+
+        .ticket-top-tag {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.72rem;
+            color: #ff9ce3;
+            letter-spacing: 0.12em;
+            margin-bottom: 12px;
+        }
+
+        .ticket-name {
+            font-size: clamp(2rem, 7vw, 3rem);
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            color: #ffffff;
+            text-shadow: 0 0 20px rgba(255, 85, 200, 0.7);
+            margin-bottom: 6px;
+        }
+
+        .ticket-tagline {
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #f3b8ff;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px dashed rgba(255, 150, 230, 0.38);
+        }
+
+        .ticket-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        @media (max-width: 520px) {
+            .ticket-meta-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .ticket-meta-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 140, 225, 0.25);
+            border-radius: 14px;
+            padding: 12px;
+        }
+
+        .ticket-meta-label {
+            font-size: 0.72rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #ff9ce3;
+            margin-bottom: 4px;
+        }
+
+        .ticket-meta-value {
+            font-weight: 800;
+            font-size: 0.95rem;
+            color: #ffffff;
+        }
+
+        /* 7. PERSONAL MESSAGE */
+        .personal-msg-card {
+            width: 100%;
+            max-width: 660px;
+            background: rgba(20, 8, 36, 0.88);
+            border: 1.5px solid rgba(255, 115, 215, 0.42);
+            border-radius: 26px;
+            padding: 30px 24px;
+            text-align: center;
+            box-shadow: 0 20px 65px rgba(0, 0, 0, 0.85), 0 0 38px rgba(170, 45, 255, 0.25);
+        }
+
+        .personal-msg-text {
+            font-size: clamp(1.05rem, 2.6vw, 1.28rem);
+            line-height: 1.65;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.94);
+            margin-bottom: 22px;
+        }
+
+        .esta-noche-title {
+            font-size: clamp(1.6rem, 5.2vw, 2.75rem);
+            font-weight: 800;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: #ffffff;
+            text-shadow: 0 0 24px #ff38b8, 0 0 50px #9b2dff;
+        }
+
         .hidden {
             display: none !important;
         }
@@ -1225,6 +1759,11 @@
     <audio id="backstageIntroVoice" src="backstage_intro.mp3" preload="auto"></audio>
     <audio id="backstageFinalVoice" src="backstage_final.mp3" preload="auto"></audio>
     <audio id="backstageAmbientMusic" src="backstage_ambient.mp3" loop preload="auto"></audio>
+
+    <!-- AUDIO CONCERT FINAL -->
+    <audio id="concertIntroVoice" src="concert_intro_voice.mp3" preload="auto"></audio>
+    <audio id="crowdCheeringAudio" src="crowd_cheering.mp3" preload="auto"></audio>
+    <audio id="concertMusicAudio" preload="auto"></audio>
 
     <div id="blackHoleVortex"></div>
 
@@ -1419,6 +1958,119 @@
             </div>
         </div>
     </div>
+
+    <!-- =========================================================
+         ETAPA 3: FINAL EXPERIENCE – KRISS, THIS IS YOUR NIGHT
+         ========================================================= -->
+    <section id="finalConcertStage" class="hidden">
+        <!-- 1. SECRET CODE UNLOCK -->
+        <div id="feUnlockScreen" class="fe-screen">
+            <div class="fe-unlock-card">
+                <div class="mission-badge">FINAL EXPERIENCE</div>
+                <h1 class="fe-unlock-title">¿ESTÁS LISTA PARA TU SORPRESA?</h1>
+                <p class="fe-unlock-sub">Introduce el código secreto para desbloquear tu regalo.</p>
+                <input id="feCodeInput" class="fe-code-input" type="text" autocomplete="off" spellcheck="false" placeholder="••••-••••">
+                <div id="feCodeError" class="fe-error-msg"></div>
+                <button id="feUnlockBtn" class="btn-primary" type="button">DESBLOQUEAR</button>
+            </div>
+        </div>
+
+        <!-- 2. TINI INTRODUCTION -->
+        <div id="feIntroScreen" class="fe-screen hidden">
+            <div class="fe-intro-card">
+                <div class="bs-speaker-tag">TINI • STAGE ACCESS</div>
+                <div class="pixel-tini-wrap">
+                    <img id="feIntroSprite" class="pixel-tini-img talking" src="reaction.gif" alt="TINI Pixel">
+                </div>
+                <p class="fe-dialogue-box">
+                    „¡Kriss! ¡Lo has conseguido! Has llegado hasta el final. Pero todavía no sabes lo que te espera... ¿Estás preparada para vivir una noche especial?”
+                </p>
+                <button id="feStartOpeningBtn" class="btn-primary" type="button">COMENZAR EL CONCIERTO</button>
+            </div>
+        </div>
+
+        <!-- 3. CONCERT OPENING -->
+        <div id="feOpeningScreen" class="fe-screen fe-opening-screen hidden">
+            <div id="openingStageGlow" class="opening-stage-glow"></div>
+            <div id="openingStatus" class="opening-status">FUTTTURA ARENA • CARGANDO ESCENARIO</div>
+            <div id="openingCountdown" class="opening-countdown">10</div>
+            <h1 id="openingRevealTitle" class="opening-reveal-title hidden">KRISS, THIS IS YOUR NIGHT</h1>
+        </div>
+
+        <!-- 4 & 5. ACT I + MUSIC & VIDEO PLAYER -->
+        <div id="feConcertScreen" class="fe-screen fe-concert-active hidden">
+            <div id="concertShell" class="concert-shell act-1">
+                <div class="act-header">
+                    <div>
+                        <div id="actKicker" class="act-kicker">ACT I – VIOLETTA</div>
+                        <h2 id="actTitle" class="act-title">DONDE TODO COMENZÓ</h2>
+                    </div>
+                </div>
+
+                <div id="screenFrame" class="screen-frame">
+                    <div id="mediaLoader" class="media-loader hidden">
+                        <div class="loader-spinner"></div>
+                        <span>CARGANDO ESCENA...</span>
+                    </div>
+                    <video id="actVideo" playsinline webkit-playsinline muted loop></video>
+                    <img id="actPhotoFallback" src="act1_violetta.jpg" alt="Escena del concierto">
+                    <div class="stage-art-overlay">
+                        <div id="nowPlayingActTag" class="now-playing-label">ACT I – VIOLETTA</div>
+                        <div id="nowPlayingSongTitle" class="now-playing-song">DONDE TODO COMENZÓ</div>
+                    </div>
+                </div>
+
+                <div class="player-bar">
+                    <div class="player-btns">
+                        <button id="togglePlayPauseBtn" class="player-btn accent" type="button">PAUSA</button>
+                        <button id="fullscreenVideoBtn" class="player-btn" type="button">PANTALLA COMPLETA</button>
+                        <button id="finishConcertBtn" class="player-btn" type="button">MOMENTO FINAL</button>
+                    </div>
+                    <div class="volume-box">
+                        <label for="concertVolumeRange">VOLUMEN</label>
+                        <input id="concertVolumeRange" type="range" min="0" max="1" step="0.02" value="0.85">
+                        <span id="concertVolumeLabel">85%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6 & 7. FINAL MOMENT, VIDEO, VIP TICKET (COD TI) & PERSONAL MESSAGE -->
+        <div id="feFinalScreen" class="fe-screen fe-final-screen hidden">
+            <div id="oneLastThingText" class="one-last-thing">ONE LAST THING...</div>
+
+            <div id="finalVideoWrap" class="final-video-wrap hidden">
+                <video id="finalVideoPlayer" src="act1_violetta.mp4" playsinline webkit-playsinline controls autoplay loop></video>
+            </div>
+
+            <div id="vipTicketCard" class="vip-ticket hidden">
+                <div class="ticket-top-tag">TINI – SPECIAL EDITION</div>
+                <div class="ticket-name">KRISS</div>
+                <div class="ticket-tagline">ONE NIGHT. ONE DREAM.</div>
+                <div class="ticket-meta-grid">
+                    <div class="ticket-meta-item">
+                        <div class="ticket-meta-label">ACCESS</div>
+                        <div class="ticket-meta-value">ALL ACCESS VIP</div>
+                    </div>
+                    <div class="ticket-meta-item">
+                        <div class="ticket-meta-label">SEAT</div>
+                        <div class="ticket-meta-value">FRONT ROW</div>
+                    </div>
+                    <div class="ticket-meta-item">
+                        <div class="ticket-meta-label">SECRET CODE</div>
+                        <div class="ticket-meta-value">TI</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="personalMessageCard" class="personal-msg-card hidden">
+                <p class="personal-msg-text">
+                    „Kriss, sé cuánto has deseado vivir un concierto de TINI. Quizás no pueda llevarte ahora mismo a uno de sus conciertos, pero quería crear algo especial para ti, algo que te hiciera sentir un poquito de esa magia. Porque tus sueños también merecen tener su propio escenario. Gracias por ser tú.”
+                </p>
+                <div class="esta-noche-title">ESTA NOCHE ES TUYA.</div>
+            </div>
+        </div>
+    </section>
 
     <script>
         /* =========================================================
@@ -1645,7 +2297,7 @@
                 vid.load();
                 sceneWrapper.classList.add('hidden');
                 blackHoleVortex.classList.remove('vortex-active');
-                document.title = '\u200E';
+                document.title = '‎';
 
                 showPostHoleGifAndMission();
             }, 1600);
@@ -2130,6 +2782,7 @@
 
         function openBackstageStage(targetScreen) {
             stopStage1Media();
+            finalConcertStage.classList.add('hidden');
 
             sceneWrapper.classList.add('hidden');
             postHoleGifLayer.classList.add('hidden');
@@ -2250,12 +2903,353 @@
         });
 
         bsContinueFinalBtn.addEventListener('click', () => {
+            ensureAudioContext();
             playCorrectSound();
-            bsContinueFinalBtn.textContent = 'COD 8-TI DEBLOCAT ✨';
+            openFinalConcertStage('unlock');
         });
 
         /* =========================================================
-           KEYBIND RAPID: APASĂ "W" PENTRU A SĂRI DIRECT LA BACKSTAGE
+           ETAPA 3: FINAL EXPERIENCE – KRISS, THIS IS YOUR NIGHT
+           ========================================================= */
+        const finalConcertStage = document.getElementById('finalConcertStage');
+        const feUnlockScreen = document.getElementById('feUnlockScreen');
+        const feCodeInput = document.getElementById('feCodeInput');
+        const feCodeError = document.getElementById('feCodeError');
+        const feUnlockBtn = document.getElementById('feUnlockBtn');
+
+        const feIntroScreen = document.getElementById('feIntroScreen');
+        const feIntroSprite = document.getElementById('feIntroSprite');
+        const feStartOpeningBtn = document.getElementById('feStartOpeningBtn');
+
+        const feOpeningScreen = document.getElementById('feOpeningScreen');
+        const openingStageGlow = document.getElementById('openingStageGlow');
+        const openingStatus = document.getElementById('openingStatus');
+        const openingCountdown = document.getElementById('openingCountdown');
+        const openingRevealTitle = document.getElementById('openingRevealTitle');
+
+        const feConcertScreen = document.getElementById('feConcertScreen');
+        const concertShell = document.getElementById('concertShell');
+        const actKicker = document.getElementById('actKicker');
+        const actTitle = document.getElementById('actTitle');
+        const screenFrame = document.getElementById('screenFrame');
+        const mediaLoader = document.getElementById('mediaLoader');
+        const actVideo = document.getElementById('actVideo');
+        const actPhotoFallback = document.getElementById('actPhotoFallback');
+        const nowPlayingActTag = document.getElementById('nowPlayingActTag');
+        const nowPlayingSongTitle = document.getElementById('nowPlayingSongTitle');
+
+        const togglePlayPauseBtn = document.getElementById('togglePlayPauseBtn');
+        const fullscreenVideoBtn = document.getElementById('fullscreenVideoBtn');
+        const finishConcertBtn = document.getElementById('finishConcertBtn');
+        const concertVolumeRange = document.getElementById('concertVolumeRange');
+        const concertVolumeLabel = document.getElementById('concertVolumeLabel');
+
+        const concertIntroVoice = document.getElementById('concertIntroVoice');
+        const crowdCheeringAudio = document.getElementById('crowdCheeringAudio');
+        const concertMusicAudio = document.getElementById('concertMusicAudio');
+
+        const feFinalScreen = document.getElementById('feFinalScreen');
+        const oneLastThingText = document.getElementById('oneLastThingText');
+        const finalVideoWrap = document.getElementById('finalVideoWrap');
+        const finalVideoPlayer = document.getElementById('finalVideoPlayer');
+        const vipTicketCard = document.getElementById('vipTicketCard');
+        const personalMessageCard = document.getElementById('personalMessageCard');
+
+        const ACT_1 = {
+            id: 'act-1',
+            shellClass: 'act-1',
+            kicker: 'ACT I – VIOLETTA',
+            title: 'DONDE TODO COMENZÓ',
+            songLabel: 'ACT I – VIOLETTA • DONDE TODO COMENZÓ',
+            videoSrc: 'act1_violetta.mp4',
+            photoSrc: 'act1_violetta.jpg',
+            musicSrc: 'act1_music.mp3',
+            fallbackFreq: 440
+        };
+
+        let isConcertPlaying = true;
+        let concertVolume = 0.85;
+        let beatPulseInterval = null;
+        let concertSynthInterval = null;
+        let countdownInterval = null;
+
+        function playConcertIntroVoice() {
+            if (!feIntroSprite) return;
+            feIntroSprite.classList.add('talking');
+            concertIntroVoice.currentTime = 0;
+            concertIntroVoice.onended = () => feIntroSprite.classList.remove('talking');
+            concertIntroVoice.play().catch(() => {
+                setTimeout(() => feIntroSprite.classList.remove('talking'), 3200);
+            });
+        }
+
+        function openFinalConcertStage(screenName = 'unlock') {
+            stopStage1Media();
+            stopAmbientMusic();
+            backstageIntroVoice.pause();
+            backstageFinalVoice.pause();
+            tiniVoiceAudio.pause();
+            concertIntroVoice.pause();
+
+            sceneWrapper.classList.add('hidden');
+            postHoleGifLayer.classList.add('hidden');
+            missionScene.classList.add('hidden');
+            quizScene.classList.add('hidden');
+            secretCodeScene.classList.add('hidden');
+            cleanTiniVoiceLayer.classList.add('hidden');
+            backstageStage.classList.add('hidden');
+            bsChallengeModal.classList.add('hidden');
+
+            finalConcertStage.classList.remove('hidden');
+            feUnlockScreen.classList.toggle('hidden', screenName !== 'unlock');
+            feIntroScreen.classList.toggle('hidden', screenName !== 'intro');
+            feOpeningScreen.classList.toggle('hidden', screenName !== 'opening');
+            feConcertScreen.classList.toggle('hidden', screenName !== 'concert');
+            feFinalScreen.classList.toggle('hidden', screenName !== 'final');
+
+            document.title = 'KRISS, THIS IS YOUR NIGHT ✨';
+
+            if (screenName === 'intro') {
+                playConcertIntroVoice();
+            }
+        }
+
+        function handleUnlockCodeSubmit() {
+            const entered = (feCodeInput.value || '').trim().toUpperCase();
+            if (entered === '0908-TINI') {
+                feCodeError.textContent = '';
+                playCorrectSound();
+                feUnlockScreen.classList.add('hidden');
+                feIntroScreen.classList.remove('hidden');
+                playConcertIntroVoice();
+            } else {
+                feCodeError.textContent = 'Ese código no es correcto. ¡Inténtalo otra vez!';
+                playWrongSound();
+            }
+        }
+
+        feUnlockBtn.addEventListener('click', handleUnlockCodeSubmit);
+        feCodeInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') handleUnlockCodeSubmit();
+        });
+
+        function startConcertSynthFallback(baseFreq) {
+            stopConcertSynthFallback();
+            let stepNote = 0;
+            const intervals = [1, 1.25, 1.5, 1.25];
+            concertSynthInterval = setInterval(() => {
+                if (!isConcertPlaying || feConcertScreen.classList.contains('hidden')) return;
+                const gain = Math.max(0.005, concertVolume * 0.045);
+                playTone(baseFreq * intervals[stepNote % intervals.length], 0.36, 'triangle', gain, 0);
+                stepNote++;
+            }, 620);
+        }
+
+        function stopConcertSynthFallback() {
+            if (concertSynthInterval) {
+                clearInterval(concertSynthInterval);
+                concertSynthInterval = null;
+            }
+        }
+
+        function startBeatSyncVisuals() {
+            if (beatPulseInterval) clearInterval(beatPulseInterval);
+            beatPulseInterval = setInterval(() => {
+                if (!isConcertPlaying || feConcertScreen.classList.contains('hidden')) return;
+                actPhotoFallback.classList.add('beat-pulse');
+                setTimeout(() => actPhotoFallback.classList.remove('beat-pulse'), 220);
+            }, 520);
+        }
+
+        function loadConcertAct1(autoPlay = true) {
+            concertShell.classList.add(ACT_1.shellClass);
+            actKicker.textContent = ACT_1.kicker;
+            actTitle.textContent = ACT_1.title;
+            nowPlayingActTag.textContent = ACT_1.kicker;
+            nowPlayingSongTitle.textContent = ACT_1.title;
+
+            mediaLoader.classList.remove('hidden');
+
+            actPhotoFallback.src = ACT_1.photoSrc;
+            actPhotoFallback.onerror = () => {
+                actPhotoFallback.removeAttribute('src');
+            };
+
+            actVideo.src = ACT_1.videoSrc;
+            actVideo.onloadeddata = () => {
+                mediaLoader.classList.add('hidden');
+            };
+            actVideo.onerror = () => {
+                mediaLoader.classList.add('hidden');
+            };
+
+            if (autoPlay) {
+                actVideo.play().catch(() => {});
+            }
+
+            concertMusicAudio.src = ACT_1.musicSrc;
+            concertMusicAudio.volume = concertVolume;
+            concertMusicAudio.currentTime = 0;
+
+            concertMusicAudio.oncanplay = () => {
+                mediaLoader.classList.add('hidden');
+            };
+
+            concertMusicAudio.onended = () => {
+                triggerFinalMoment();
+            };
+
+            concertMusicAudio.onerror = () => {
+                mediaLoader.classList.add('hidden');
+                if (isConcertPlaying) startConcertSynthFallback(ACT_1.fallbackFreq);
+            };
+
+            if (autoPlay && isConcertPlaying) {
+                concertMusicAudio.play().then(() => {
+                    stopConcertSynthFallback();
+                }).catch(() => {
+                    startConcertSynthFallback(ACT_1.fallbackFreq);
+                });
+            }
+
+            startBeatSyncVisuals();
+        }
+
+        function startConcertOpeningSequence() {
+            ensureAudioContext();
+            concertIntroVoice.pause();
+            if (feIntroSprite) feIntroSprite.classList.remove('talking');
+            feIntroScreen.classList.add('hidden');
+            feOpeningScreen.classList.remove('hidden');
+
+            let remaining = 10;
+            openingCountdown.textContent = remaining;
+            openingRevealTitle.classList.add('hidden');
+            openingCountdown.classList.remove('hidden');
+            openingStatus.textContent = 'FUTTTURA ARENA • MULTITUD EN PIE';
+            openingStageGlow.style.opacity = '0.15';
+
+            crowdCheeringAudio.currentTime = 0;
+            crowdCheeringAudio.volume = concertVolume;
+            crowdCheeringAudio.play().catch(() => {
+                playTone(110, 0.8, 'sawtooth', 0.05, 0);
+            });
+
+            clearInterval(countdownInterval);
+            countdownInterval = setInterval(() => {
+                remaining--;
+                const progress = (10 - remaining) / 10;
+                openingStageGlow.style.opacity = String(0.15 + progress * 0.85);
+                openingStageGlow.style.filter = `brightness(${1 + progress * 0.7})`;
+
+                if (remaining > 0) {
+                    openingCountdown.textContent = remaining;
+                    playTone(220 + progress * 440, 0.14, 'triangle', 0.08, 0);
+                } else {
+                    clearInterval(countdownInterval);
+                    openingCountdown.classList.add('hidden');
+                    openingStatus.textContent = 'FUTTTURA STAGE UNLOCKED';
+                    openingRevealTitle.classList.remove('hidden');
+                    playCorrectSound();
+
+                    setTimeout(() => {
+                        feOpeningScreen.classList.add('hidden');
+                        feConcertScreen.classList.remove('hidden');
+                        isConcertPlaying = true;
+                        togglePlayPauseBtn.textContent = 'PAUSA';
+                        loadConcertAct1(true);
+                    }, 2200);
+                }
+            }, 1000);
+        }
+
+        feStartOpeningBtn.addEventListener('click', startConcertOpeningSequence);
+
+        togglePlayPauseBtn.addEventListener('click', () => {
+            ensureAudioContext();
+            if (isConcertPlaying) {
+                isConcertPlaying = false;
+                togglePlayPauseBtn.textContent = 'REPRODUCIR';
+                concertMusicAudio.pause();
+                actVideo.pause();
+                stopConcertSynthFallback();
+            } else {
+                isConcertPlaying = true;
+                togglePlayPauseBtn.textContent = 'PAUSA';
+                actVideo.play().catch(() => {});
+                concertMusicAudio.play().catch(() => {
+                    startConcertSynthFallback(ACT_1.fallbackFreq);
+                });
+            }
+        });
+
+        fullscreenVideoBtn.addEventListener('click', () => {
+            screenFrame.classList.toggle('fullscreen-mode');
+            fullscreenVideoBtn.textContent = screenFrame.classList.contains('fullscreen-mode')
+                ? 'SALIR PANTALLA COMPLETA'
+                : 'PANTALLA COMPLETA';
+        });
+
+        concertVolumeRange.addEventListener('input', () => {
+            concertVolume = Number(concertVolumeRange.value);
+            concertVolumeLabel.textContent = `${Math.round(concertVolume * 100)}%`;
+            concertMusicAudio.volume = concertVolume;
+            crowdCheeringAudio.volume = concertVolume;
+            finalVideoPlayer.volume = concertVolume;
+        });
+
+        function triggerFinalMoment() {
+            isConcertPlaying = false;
+            stopConcertSynthFallback();
+            if (beatPulseInterval) clearInterval(beatPulseInterval);
+            screenFrame.classList.remove('fullscreen-mode');
+
+            const startVol = concertMusicAudio.volume;
+            let stepFade = 0;
+            const fadeOutTimer = setInterval(() => {
+                stepFade++;
+                concertMusicAudio.volume = Math.max(0, startVol * (1 - stepFade / 15));
+                if (stepFade >= 15) {
+                    clearInterval(fadeOutTimer);
+                    concertMusicAudio.pause();
+                    actVideo.pause();
+                }
+            }, 80);
+
+            feConcertScreen.classList.add('hidden');
+            feFinalScreen.classList.remove('hidden');
+            oneLastThingText.classList.remove('shown');
+            finalVideoWrap.classList.add('hidden');
+            vipTicketCard.classList.add('hidden');
+            personalMessageCard.classList.add('hidden');
+
+            setTimeout(() => {
+                oneLastThingText.classList.add('shown');
+            }, 600);
+
+            setTimeout(() => {
+                finalVideoWrap.classList.remove('hidden');
+                finalVideoPlayer.src = actVideo.getAttribute('src') || ACT_1.videoSrc;
+                finalVideoPlayer.volume = concertVolume;
+                finalVideoPlayer.currentTime = 0;
+                finalVideoPlayer.play().catch(() => {});
+            }, 1800);
+
+            setTimeout(() => {
+                vipTicketCard.classList.remove('hidden');
+            }, 2800);
+
+            setTimeout(() => {
+                personalMessageCard.classList.remove('hidden');
+            }, 4200);
+        }
+
+        finishConcertBtn.addEventListener('click', triggerFinalMoment);
+
+        /* =========================================================
+           KEYBINDS RAPIDE:
+           - APASĂ "W" PENTRU A SĂRI DIRECT LA BACKSTAGE
+           - APASĂ "E" PENTRU A SĂRI DIRECT LA FINAL EXPERIENCE (INTRO TINI)
            ========================================================= */
         window.addEventListener('keydown', (e) => {
             if (e.repeat) return;
@@ -2266,6 +3260,10 @@
                 ensureAudioContext();
                 playCorrectSound();
                 openBackstageStage('intro');
+            } else if (e.key && e.key.toLowerCase() === 'e') {
+                ensureAudioContext();
+                playCorrectSound();
+                openFinalConcertStage('intro');
             }
         });
     </script>

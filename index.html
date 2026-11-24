@@ -815,7 +815,7 @@
             border-color: #ff80d5;
         }
 
-        /* PIXEL-ART TINI SPRITE & ANIMATIONS */
+        /* PIXEL-ART TINI (reaction.gif) SPRITE & ANIMATIONS */
         .pixel-tini-wrap {
             position: relative;
             display: inline-flex;
@@ -825,11 +825,12 @@
         }
 
         .pixel-tini-img {
-            width: 148px;
-            height: 148px;
+            width: 152px;
+            height: 152px;
             image-rendering: pixelated;
             image-rendering: crisp-edges;
             object-fit: contain;
+            border-radius: 14px;
             filter: drop-shadow(0 10px 22px rgba(255, 50, 160, 0.38));
             animation: pixelIdleBob 1.9s steps(2, end) infinite;
         }
@@ -1192,15 +1193,34 @@
             animation: fadeInScene 0.6s ease forwards;
         }
 
+        /* CODUL FINAL 8-TI DUPĂ SETLIST 4/4 */
+        .final-code-display {
+            font-family: 'Press Start 2P', monospace;
+            font-size: clamp(2.6rem, 11vw, 4.4rem);
+            letter-spacing: 0.22em;
+            padding: 16px 24px;
+            border-radius: 18px;
+            background: rgba(0, 240, 255, 0.1);
+            border: 2px solid rgba(0, 240, 255, 0.55);
+            color: #ffffff;
+            text-shadow:
+                0 0 22px rgba(0, 240, 255, 0.8),
+                0 0 42px rgba(255, 64, 170, 0.55);
+            animation: codePulse 2.2s ease-in-out infinite;
+        }
+
         .hidden {
             display: none !important;
         }
     </style>
 </head>
 <body>
+    <!-- AUDIO ETAPA 1 -->
     <audio id="glitchAudio" src="glitch.mp3" loop preload="auto"></audio>
     <audio id="clickAudio" src="click.mp3" preload="auto"></audio>
     <audio id="afterHoleAudio" src="after_hole.mp3" preload="auto"></audio>
+
+    <!-- AUDIO NOU DUPĂ 090 (VOCEA LUI TINI PE GIF-UL CURAT) & ETAPA 2 BACKSTAGE -->
     <audio id="tiniVoiceAudio" src="tini_voice.mp3" preload="auto"></audio>
     <audio id="backstageIntroVoice" src="backstage_intro.mp3" preload="auto"></audio>
     <audio id="backstageFinalVoice" src="backstage_final.mp3" preload="auto"></audio>
@@ -1302,7 +1322,7 @@
             <div class="bs-dialogue-panel">
                 <div class="bs-speaker-tag">TINI • PIXEL BACKSTAGE</div>
                 <div class="pixel-tini-wrap">
-                    <img id="bsIntroSprite" class="pixel-tini-img talking" src="tini_pixel_talk.png" alt="TINI Pixel">
+                    <img id="bsIntroSprite" class="pixel-tini-img talking" src="reaction.gif" alt="TINI Pixel Vorbind">
                 </div>
                 <p class="bs-speech-bubble">
                     „¡Kriss! Tenemos un pequeño problema... ¡Ha desaparecido la lista de canciones del concierto! Necesito tu ayuda para encontrar las cuatro canciones antes de salir al escenario. ¿Me ayudas?”
@@ -1314,7 +1334,7 @@
         <!-- 2. CAMERA DE BACKSTAGE CU 4 OBIECTE INTERACTIVE -->
         <div id="bsRoomScreen" class="bs-room-screen hidden">
             <div class="bs-room-header-strip">
-                <img id="bsRoomSprite" class="pixel-tini-img" src="tini_pixel_idle.png" alt="TINI">
+                <img id="bsRoomSprite" class="pixel-tini-img" src="reaction.gif" alt="TINI Pixel Idle">
                 <p id="bsRoomPrompt" class="bs-room-hint-text">
                     Apasă pe cele 4 obiecte din cameră pentru a descifra puzzle-urile cu emoji-uri și a reface setlist-ul.
                 </p>
@@ -1370,16 +1390,17 @@
             </div>
         </div>
 
-        <!-- 5. FINAL BACKSTAGE -->
+        <!-- 5. FINAL BACKSTAGE + CODUL 8-TI -->
         <div id="bsFinalScreen" class="bs-final-screen hidden">
             <div class="bs-dialogue-panel">
                 <div class="bs-speaker-tag">SETLIST COMPLET • 4/4</div>
                 <div class="pixel-tini-wrap">
-                    <img id="bsFinalSprite" class="pixel-tini-img happy" src="tini_pixel_happy.png" alt="TINI Happy">
+                    <img id="bsFinalSprite" class="pixel-tini-img happy" src="reaction.gif" alt="TINI Pixel Bucuroasă">
                 </div>
                 <p class="bs-speech-bubble">
                     „¡Lo conseguimos, Kriss! ¡El concierto ya está listo! Pero todavía queda una última sorpresa para ti...”
                 </p>
+                <div id="finalCodeBox" class="final-code-display">8-TI</div>
                 <button id="bsContinueFinalBtn" class="btn-primary" type="button">CONTINUAR</button>
             </div>
         </div>
@@ -1647,9 +1668,11 @@
         }
 
         window.addEventListener('DOMContentLoaded', () => {
+            try {
+                localStorage.removeItem('tini_backstage_setlist_v1');
+            } catch (_) {}
             vid.play().catch(() => {});
             startGlitchLoop();
-            restoreBackstageIfSaved();
         });
 
         glitchAudio.addEventListener('pause', () => {
@@ -1928,7 +1951,7 @@
                 setTimeout(goToBackstage, 1900);
             });
 
-            setTimeout(goToBackstage, 5500);
+            setTimeout(goToBackstage, 6000);
         }
 
         continueAfterCodeBtn.addEventListener('click', playTiniCleanVoiceAndStartBackstage);
@@ -1936,8 +1959,6 @@
         /* =========================================================
            ETAPA 2: BACKSTAGE — THE MISSING SETLIST
            ========================================================= */
-        const STORAGE_KEY = 'tini_backstage_setlist_v1';
-
         const backstageStage = document.getElementById('backstageStage');
         const bsProgressBadge = document.getElementById('bsProgressBadge');
         const bsMusicToggleBtn = document.getElementById('bsMusicToggleBtn');
@@ -1992,7 +2013,7 @@
             headphones: {
                 id: 'headphones',
                 label: 'OBIECT • CĂȘTI',
-                emojis: '🔠🔠🔠',
+                emojis: '🇹🇹🇹',
                 songTitle: 'LA TRIPLE T',
                 prompt: 'Căștile redau un indiciu cu trei litere. Ce melodie este?',
                 options: ['FRESA', 'LA TRIPLE T', 'MIÉNTEME', 'CUPIDO']
@@ -2000,7 +2021,7 @@
         };
 
         let backstageState = {
-            screen: 'intro', // 'intro' | 'room' | 'final'
+            screen: 'intro',
             solved: {
                 mic: false,
                 journal: false,
@@ -2012,33 +2033,6 @@
 
         let activeChallengeId = null;
         let ambientSynthInterval = null;
-
-        function saveBackstageState() {
-            try {
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(backstageState));
-            } catch (_) {}
-        }
-
-        function loadBackstageState() {
-            try {
-                const raw = localStorage.getItem(STORAGE_KEY);
-                if (!raw) return null;
-                const parsed = JSON.parse(raw);
-                if (parsed && parsed.solved) {
-                    return {
-                        screen: parsed.screen || 'intro',
-                        solved: {
-                            mic: Boolean(parsed.solved.mic),
-                            journal: Boolean(parsed.solved.journal),
-                            photo: Boolean(parsed.solved.photo),
-                            headphones: Boolean(parsed.solved.headphones)
-                        },
-                        musicMuted: Boolean(parsed.musicMuted)
-                    };
-                }
-            } catch (_) {}
-            return null;
-        }
 
         function getSolvedCount() {
             return Object.values(backstageState.solved).filter(Boolean).length;
@@ -2067,6 +2061,10 @@
             bsIntroScreen.classList.toggle('hidden', backstageState.screen !== 'intro');
             bsRoomScreen.classList.toggle('hidden', backstageState.screen !== 'room');
             bsFinalScreen.classList.toggle('hidden', backstageState.screen !== 'final');
+
+            if (backstageState.screen === 'final') {
+                document.title = '8-TI ✨';
+            }
         }
 
         function startAmbientMusic() {
@@ -2077,7 +2075,6 @@
 
             backstageAmbientMusic.volume = 0.22;
             backstageAmbientMusic.play().catch(() => {
-                // Fallback discret prin Web Audio API dacă nu există backstage_ambient.mp3
                 if (!ambientSynthInterval) {
                     const notes = [261.63, 329.63, 392.0, 493.88];
                     let idx = 0;
@@ -2120,19 +2117,31 @@
             });
         }
 
-        function openBackstageStage(targetScreen) {
+        function stopStage1Media() {
             isVoid = true;
+            clearTimeout(duckTimer);
             clearInterval(titleInterval);
+            glitchAudio.loop = false;
+            glitchAudio.pause();
+            clickAudio.pause();
+            afterHoleAudio.pause();
+            vid.pause();
+        }
+
+        function openBackstageStage(targetScreen) {
+            stopStage1Media();
+
             sceneWrapper.classList.add('hidden');
+            postHoleGifLayer.classList.add('hidden');
             missionScene.classList.add('hidden');
             quizScene.classList.add('hidden');
             secretCodeScene.classList.add('hidden');
             cleanTiniVoiceLayer.classList.add('hidden');
+            blackHoleVortex.classList.remove('vortex-active');
 
             backstageState.screen = targetScreen || backstageState.screen || 'intro';
-            saveBackstageState();
             backstageStage.classList.remove('hidden');
-            document.title = 'BACKSTAGE: THE MISSING SETLIST ✨';
+            document.title = backstageState.screen === 'final' ? '8-TI ✨' : 'BACKSTAGE: THE MISSING SETLIST ✨';
 
             updateBackstageUI();
             startAmbientMusic();
@@ -2141,14 +2150,6 @@
                 speakIntroSpanish();
             } else if (backstageState.screen === 'final') {
                 speakFinalSpanish();
-            }
-        }
-
-        function restoreBackstageIfSaved() {
-            const saved = loadBackstageState();
-            if (saved && (saved.screen === 'room' || saved.screen === 'final' || Object.values(saved.solved).some(Boolean))) {
-                backstageState = saved;
-                openBackstageStage(saved.screen);
             }
         }
 
@@ -2191,7 +2192,6 @@
                 allBtns.forEach(b => (b.disabled = true));
 
                 backstageState.solved[activeChallengeId] = true;
-                saveBackstageState();
                 updateBackstageUI();
 
                 bsRoomSprite.classList.add('happy');
@@ -2204,7 +2204,6 @@
 
                     if (getSolvedCount() === 4) {
                         backstageState.screen = 'final';
-                        saveBackstageState();
                         updateBackstageUI();
                         speakFinalSpanish();
                     }
@@ -2223,7 +2222,6 @@
             bsIntroSprite.classList.remove('talking');
             playCorrectSound();
             backstageState.screen = 'room';
-            saveBackstageState();
             updateBackstageUI();
             startAmbientMusic();
         });
@@ -2243,7 +2241,6 @@
         bsMusicToggleBtn.addEventListener('click', () => {
             ensureAudioContext();
             backstageState.musicMuted = !backstageState.musicMuted;
-            saveBackstageState();
             updateBackstageUI();
             if (backstageState.musicMuted) {
                 stopAmbientMusic();
@@ -2254,8 +2251,22 @@
 
         bsContinueFinalBtn.addEventListener('click', () => {
             playCorrectSound();
-            bsRoomPrompt.textContent = 'Setlist complet (4/4)! Ultima surpriză este pregătită.';
-            bsContinueFinalBtn.textContent = 'SURPRIZA FINALĂ PREGĂTITĂ ✨';
+            bsContinueFinalBtn.textContent = 'COD 8-TI DEBLOCAT ✨';
+        });
+
+        /* =========================================================
+           KEYBIND RAPID: APASĂ "W" PENTRU A SĂRI DIRECT LA BACKSTAGE
+           ========================================================= */
+        window.addEventListener('keydown', (e) => {
+            if (e.repeat) return;
+            const tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : '';
+            if (tag === 'input' || tag === 'textarea') return;
+
+            if (e.key && e.key.toLowerCase() === 'w') {
+                ensureAudioContext();
+                playCorrectSound();
+                openBackstageStage('intro');
+            }
         });
     </script>
 </body>

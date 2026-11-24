@@ -2,17 +2,16 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <!-- Setări speciale pentru Safari iPhone (Full Screen & Disable Zoom) -->
+    <!-- Setări Full Screen special pentru Safari pe iPhone -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     
-    <!-- Suport Web App pentru iOS (elimină bara de navigare când e salvat pe ecran) -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Pentru Tine ❤️">
     
-    <title>La mulți ani, iubirea mea! ❤️</title>
+    <title>Surpriză! ❤️</title>
 
-    <!-- Canvas Confetti pentru efecte vizuale -->
+    <!-- Canvas Confetti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <style>
@@ -21,15 +20,14 @@
             margin: 0;
             padding: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            -webkit-tap-highlight-color: transparent; /* Elimină efectul gri de apăsare pe Safari */
+            -webkit-tap-highlight-color: transparent;
         }
 
-        /* Ocupă tot ecranul, inclusiv zona Notch/Dynamic Island */
         html, body {
             width: 100%;
             height: 100%;
             overflow: hidden;
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            background: #000000; /* Ecran complet negru la început */
         }
 
         body {
@@ -39,229 +37,68 @@
             padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
         }
 
-        .container {
-            background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 25px 20px;
-            border-radius: 25px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
-            transition: all 0.4s ease;
-        }
-
-        h1 {
-            color: #d63384;
-            font-size: 1.6em;
-            margin-bottom: 12px;
-            font-weight: 700;
-        }
-
-        p {
-            color: #4a4a4a;
-            font-size: 1em;
-            line-height: 1.5;
-            margin-bottom: 20px;
-        }
-
-        .btn {
-            background: linear-gradient(45deg, #ff4b2b, #ff416c);
-            color: white;
-            border: none;
-            padding: 14px 28px;
-            font-size: 1em;
-            font-weight: 600;
-            border-radius: 30px;
+        /* ECRANUL INIȚIAL BLANK (INVISIBLE TOUCH OVERLAY) */
+        #blankScreen {
+            position: fixed;
+            inset: 0;
+            background: #000000;
+            z-index: 99999;
             cursor: pointer;
-            box-shadow: 0 6px 20px rgba(255, 75, 43, 0.35);
-            margin: 8px 0;
-            width: 100%;
-            touch-action: manipulation;
         }
 
-        .btn:active {
-            transform: scale(0.96);
-        }
-
-        /* Animație Plic */
-        .envelope {
-            font-size: 80px;
-            cursor: pointer;
-            margin: 15px 0;
-            animation: pulse 1.8s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-
-        /* Carduri Motive */
-        .card-grid {
+        /* OVERLAY VIDEO GLITCH FULL SCREEN */
+        #glitchScreen {
+            position: fixed;
+            inset: 0;
+            background: #050505;
+            z-index: 9999;
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            margin: 15px 0;
-        }
-
-        .card {
-            background: #fff0f3;
-            border: 1.5px solid #ffccd5;
-            padding: 14px;
-            border-radius: 16px;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .card:active {
-            transform: scale(0.98);
-            background: #ffe6ea;
-        }
-
-        .card h3 {
-            color: #d63384;
-            font-size: 1em;
-            margin-bottom: 4px;
-        }
-
-        .card p {
-            font-size: 0.85em;
-            margin-bottom: 0;
-            color: #777;
-        }
-
-        /* Zonă buton buclucaș */
-        .interactive-zone {
-            position: relative;
-            height: 140px;
-            margin-top: 10px;
-            display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
+            overflow: hidden;
         }
 
-        #btnNo {
+        #glitchVideo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .scanlines {
             position: absolute;
-            bottom: 0;
-            background: #6c757d;
-            box-shadow: none;
-            width: auto;
-            padding: 10px 25px;
-            transition: left 0.15s ease, top 0.15s ease;
+            inset: 0;
+            background: repeating-linear-gradient(
+                to bottom,
+                rgba(255, 255, 255, 0.04) 0px,
+                rgba(255, 255, 255, 0.04) 1px,
+                transparent 2px,
+                transparent 4px
+            );
+            pointer-events: none;
         }
 
-        .hidden {
-            display: none !important;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- PASUL 1: Plicul -->
-    <div id="step1" class="container">
-        <h1>Ai primit un mesaj! ❤️</h1>
-        <div class="envelope" onclick="goToStep2()">✉️</div>
-        <p>Apasă pe plic pentru a-ți deschide cadoul!</p>
-    </div>
-
-    <!-- PASUL 2: Mesajul și Motivele -->
-    <div id="step2" class="container hidden">
-        <h1>La mulți ani, iubire! 🎉✨</h1>
-        <p>Am creat acest colțișor special doar pentru tine. Apasă pe felicitări:</p>
-        
-        <div class="card-grid">
-            <div class="card" onclick="alert('❤️ Zâmbetul tău îmi luminează fiecare zi!')">
-                <h3>Motivul 1 💖</h3>
-                <p>Apasă să vezi</p>
-            </div>
-            <div class="card" onclick="alert('🥰 Felul în care mă faci să râd mereu.')">
-                <h3>Motivul 2 💖</h3>
-                <p>Apasă să vezi</p>
-            </div>
-            <div class="card" onclick="alert('🌟 Pentru toate amintirile minunate împreună.')">
-                <h3>Motivul 3 💖</h3>
-                <p>Apasă să vezi</p>
-            </div>
-        </div>
-
-        <button class="btn" onclick="goToStep3()">Mai am o întrebare... ➡️</button>
-    </div>
-
-    <!-- PASUL 3: Întrebarea cu butonul care fuge -->
-    <div id="step3" class="container hidden">
-        <h1>O întrebare importantă... 🌹</h1>
-        <p>Promiți să mă iubești la fel de mult și anul acesta?</p>
-        
-        <div class="interactive-zone">
-            <button class="btn" onclick="celebrate()">DA! Normal! ❤️</button>
-            <button id="btnNo" class="btn" ontouchstart="moveButton()" onclick="moveButton()">NU 😜</button>
-        </div>
-    </div>
-
-    <!-- PASUL 4: Ecrane de final -->
-    <div id="step4" class="container hidden">
-        <h1>Știam eu! 😍🎉</h1>
-        <p>Te iubesc enorm și îți doresc cea mai frumoasă zi de naștere!</p>
-        <p style="font-weight: bold; color: #d63384;">❤️ Cu dragoste, [Numele Tău] ❤️</p>
-    </div>
-
-    <script>
-        function goToStep2() {
-            document.getElementById('step1').classList.add('hidden');
-            document.getElementById('step2').classList.remove('hidden');
-            confetti({ particleCount: 40, spread: 50, origin: { y: 0.6 } });
+        .glitch-active {
+            animation: glitchShake 0.14s infinite;
+            filter: contrast(150%) saturate(180%);
         }
 
-        function goToStep3() {
-            document.getElementById('step2').classList.add('hidden');
-            document.getElementById('step3').classList.remove('hidden');
+        @keyframes glitchShake {
+            0% { transform: translate(0, 0) skew(0deg); }
+            20% { transform: translate(-8px, 4px) skew(-3deg); }
+            40% { transform: translate(8px, -4px) skew(3deg); }
+            60% { transform: translate(-6px, -2px) skew(2deg); }
+            80% { transform: translate(6px, 3px) skew(-2deg); }
+            100% { transform: translate(0, 0) skew(0deg); }
         }
 
-        // Face butonul de NU să fugă pe iPhone la simpla atingere (touch)
-        function moveButton() {
-            const btn = document.getElementById('btnNo');
-            const container = document.querySelector('.interactive-zone');
-            
-            const maxX = container.clientWidth - btn.clientWidth;
-            const maxY = container.clientHeight - btn.clientHeight;
-            
-            const randomX = Math.floor(Math.random() * Math.max(maxX, 20));
-            const randomY = Math.floor(Math.random() * Math.max(maxY, 20));
-            
-            btn.style.left = randomX + 'px';
-            btn.style.top = randomY + 'px';
-        }
-
-        function celebrate() {
-            document.getElementById('step3').classList.add('hidden');
-            document.getElementById('step4').classList.remove('hidden');
-
-            // Efect festiv de artificii cu confetti
-            var duration = 4 * 1000;
-            var end = Date.now() + duration;
-
-            (function frame() {
-                confetti({
-                    particleCount: 5,
-                    angle: 60,
-                    spread: 55,
-                    origin: { x: 0 }
-                });
-                confetti({
-                    particleCount: 5,
-                    angle: 120,
-                    spread: 55,
-                    origin: { x: 1 }
-                });
-
-                if (Date.now() < end) {
-                    requestAnimationFrame(frame);
-                }
-            }());
-        }
-    </script>
-</body>
-</html>
+        .glitch-text {
+            position: absolute;
+            bottom: calc(30px + env(safe-area-inset-bottom));
+            color: #ff2a85;
+            font-family: monospace;
+            font-size: 1.1em;
+            letter-spacing: 2px;
+            text-shadow: 2px 0 #00f0ff, -2px 0 #ff0055;
+            background: rgba(0, 0, 0, 0.65);
+            padding:
